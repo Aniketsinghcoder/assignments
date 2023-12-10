@@ -16,6 +16,33 @@
   Once you've implemented the logic, test your code by running
 */
 
-class Calculator {}
+class Calculator {
+  constructor() {
+    this.result = 0;
+  }
+  add(num) {
+    this.calculate(this.result + num);
+  }
+  subtract(num) {
+    this.calculate(this.result - num);
+  }
+  multiply(num) {
+    this.calculate(this.result * num);
+  }
+  divide(num) {
+    this.calculate(this.result / num);
+  }
+  clear() {
+    this.result = 0;
+  }
+  getResult() {
+    return this.result;
+  }
+  calculate(expression) {
+    if (eval(expression) === Infinity) throw new Error('Division by Zero');
+    if (eval(expression) === NaN) throw new Error('Only numbers are allowed');
+    this.result = eval(expression);
+  }
+}
 
 module.exports = Calculator;

@@ -14,7 +14,17 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+  uniqueCategory = new Map();
+  for (index = 0; index < transactions.length; index++) {
+    category = transactions[index]['category'].toString().trim();
+    price = parseInt(transactions[index]['price']);
+    uniqueCategory.set(category, uniqueCategory.has(category) ? uniqueCategory.get(category) + price : price);
+  }
+  result = [];
+  for (const [category, totalSpent] of uniqueCategory.entries()) {
+    result.push({ 'category': category, 'totalSpent': totalSpent });
+  }
+  return result;
 }
 
 module.exports = calculateTotalSpentByCategory;
